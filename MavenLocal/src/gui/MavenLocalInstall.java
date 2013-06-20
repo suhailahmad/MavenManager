@@ -5,6 +5,9 @@
 package gui;
 
 import core.MVNInstall;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import javax.swing.JFileChooser;
 import java.io.File;
 
@@ -31,6 +34,10 @@ public class MavenLocalInstall extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pomDialog = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pomDisplayArea = new javax.swing.JTextArea();
+        copyPom = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -43,6 +50,41 @@ public class MavenLocalInstall extends javax.swing.JFrame {
         versionLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         statusLabel = new javax.swing.JLabel();
+
+        pomDisplayArea.setEditable(false);
+        pomDisplayArea.setColumns(20);
+        pomDisplayArea.setRows(5);
+        jScrollPane1.setViewportView(pomDisplayArea);
+
+        copyPom.setText("Copy Dependency");
+        copyPom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyPomActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pomDialogLayout = new javax.swing.GroupLayout(pomDialog.getContentPane());
+        pomDialog.getContentPane().setLayout(pomDialogLayout);
+        pomDialogLayout.setHorizontalGroup(
+            pomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pomDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pomDialogLayout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addComponent(copyPom)
+                .addGap(139, 139, 139))
+        );
+        pomDialogLayout.setVerticalGroup(
+            pomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pomDialogLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(copyPom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Maven Installer");
@@ -167,7 +209,21 @@ public class MavenLocalInstall extends javax.swing.JFrame {
        else{
            statusLabel.setText("An error occured");
        }
+       pomDialog.setVisible(true);
+       pomDialog.setSize(350, 350);
+       pomDisplayArea.setText(install.getDependency(param));
+       artifactTextField.setText("");
+       groupTextField.setText("");
+       versionTextField.setText("");
+       
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void copyPomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyPomActionPerformed
+        String myString = pomDisplayArea.getText();
+        StringSelection stringSelection = new StringSelection (myString);
+        Clipboard clpbrd = Toolkit.getDefaultToolkit ().getSystemClipboard ();
+        clpbrd.setContents (stringSelection, null);
+    }//GEN-LAST:event_copyPomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,12 +263,16 @@ public class MavenLocalInstall extends javax.swing.JFrame {
     private javax.swing.JFileChooser FileChooser;
     private javax.swing.JLabel artifactLabel;
     private javax.swing.JTextField artifactTextField;
+    private javax.swing.JButton copyPom;
     private javax.swing.JLabel groupLabel;
     private javax.swing.JTextField groupTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JDialog pomDialog;
+    private javax.swing.JTextArea pomDisplayArea;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JLabel versionLabel;
     private javax.swing.JTextField versionTextField;

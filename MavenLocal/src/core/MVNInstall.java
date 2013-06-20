@@ -33,4 +33,14 @@ public class MVNInstall {
 		String command="mvn install:install-file"+space+dfile+dgroup+dartifact+dversion+"-Dpackaging=jar";
 		return command;
 	}
+        
+        public String getDependency(String[] param){
+            
+            String str = "<dependency>\n" +
+                    "<groupId>"+param[1]+"</groupId>\n" +
+                    "<artifactId>"+param[0]+"</artifactId>\n" +
+                    "<version>"+param[2]+"</version>\n" +
+                    "</dependency>";  
+            return str;
+        }
 }
