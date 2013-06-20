@@ -8,8 +8,8 @@ import core.MVNInstall;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import javax.swing.JFileChooser;
 import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -23,6 +23,8 @@ public class MavenLocalInstall extends javax.swing.JFrame {
     public MavenLocalInstall() {
         initComponents();
         this.setLocationRelativeTo(null);
+        FileNameExtensionFilter filter=new FileNameExtensionFilter("JAR Files","jar");
+        fileChooser.setFileFilter(filter);
     }
 
     /**
@@ -41,7 +43,7 @@ public class MavenLocalInstall extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        FileChooser = new javax.swing.JFileChooser();
+        fileChooser = new javax.swing.JFileChooser();
         groupTextField = new javax.swing.JTextField();
         artifactTextField = new javax.swing.JTextField();
         versionTextField = new javax.swing.JTextField();
@@ -95,9 +97,9 @@ public class MavenLocalInstall extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(222, 106, 106));
         jLabel1.setText("Maven Installer");
 
-        FileChooser.addActionListener(new java.awt.event.ActionListener() {
+        fileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FileChooserActionPerformed(evt);
+                fileChooserActionPerformed(evt);
             }
         });
 
@@ -127,7 +129,7 @@ public class MavenLocalInstall extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(FileChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fileChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +161,7 @@ public class MavenLocalInstall extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(groupLabel)
@@ -191,12 +193,12 @@ public class MavenLocalInstall extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileChooserActionPerformed
+    private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
            
-    }//GEN-LAST:event_FileChooserActionPerformed
+    }//GEN-LAST:event_fileChooserActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       File file=FileChooser.getSelectedFile();
+       File file=fileChooser.getSelectedFile();
        String artifact=artifactTextField.getText();
        String group=groupTextField.getText();
        String version=versionTextField.getText();
@@ -259,10 +261,10 @@ public class MavenLocalInstall extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser FileChooser;
     private javax.swing.JLabel artifactLabel;
     private javax.swing.JTextField artifactTextField;
     private javax.swing.JButton copyPom;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel groupLabel;
     private javax.swing.JTextField groupTextField;
     private javax.swing.JButton jButton1;
