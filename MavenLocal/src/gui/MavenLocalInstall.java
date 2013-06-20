@@ -215,7 +215,6 @@ public class MavenLocalInstall extends javax.swing.JFrame {
        artifactTextField.setText("");
        groupTextField.setText("");
        versionTextField.setText("");
-       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void copyPomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyPomActionPerformed
